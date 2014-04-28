@@ -1,4 +1,3 @@
-
 import org.wiperdog.directorywatcher.Listener
 import org.apache.log4j.Logger
 import org.osgi.framework.BundleContext
@@ -11,7 +10,7 @@ import org.osgi.util.tracker.ServiceTrackerCustomizer
 
 /**
  * Listerner using for watching change from file : etc/listJobs.cfg
- */
+ *
  */
 class ListJobListener implements Listener,ServiceTrackerCustomizer {
 	def dir
