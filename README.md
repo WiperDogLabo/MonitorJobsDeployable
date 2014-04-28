@@ -1,8 +1,8 @@
-MonitorJobsDeployable
-=====================
+Monitor jobs deployable 
+------------------------
 
-This repository contains stuffs about "Monitor job deployable"
+This repository contains stuffs about Job individual deployable , we's research about 2 aspects :
 
- - org.wiperdog.directorywatcher/ : Modified source code version of directorywatcher to watching for file on diffirence machine via network
- - pax-test-directorywatcher/ : A simple test example for above source code 
- - wiperdog_installer/ : The modified version of wiperdog installer using for jobs deployable
+ - Jobs located on sharestorage server and wiperdog (on other machine) will using them for monitoring
+ 
+ - Jobs,trigger,jobclass,instances file located on local but outside wiperdog's  'var/job' directory
