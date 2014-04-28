@@ -58,7 +58,9 @@ WiperDog is provided with Apache 2.0 licence.
 Change history
 -------------------------------------
 Version 0.1.0 (first release)
-Version 0.1.1 
+
+	wiperdog-assembly-0.2.6-SNAPSHOT : 
+		
 	+ Update wiperdog installer for facility to using job individual deployable on sharestorage :
 		- Jobs can be locate on sharestorge (outside wiperdog)
 

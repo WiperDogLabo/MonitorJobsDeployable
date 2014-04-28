@@ -1,2 +1,2 @@
  - wiperdog/ : The modified version of wiperdog installer using for jobs deployable on local
- - Jobs/ : Jobs file split up from wiperdog installer and will be put the same machine with wiperdog server but outside wiperdog directory
+ - Jobs/ : Jobs file split up from wiperdog installer and will be put the same machine with wiperdog server but outside wiperdog director
