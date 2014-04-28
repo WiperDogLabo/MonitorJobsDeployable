@@ -5,7 +5,6 @@ import org.wiperdog.directorywatcher.Listener
 import org.apache.log4j.Logger;
 import org.osgi.framework.BundleContext
 import org.osgi.framework.FrameworkUtil;
-import jcifs.smb.SmbFile
 
 
 
@@ -33,28 +32,12 @@ class DefaultLoader implements Listener {
 		return file.getAbsolutePath().endsWith(".groovy");
 	}
 
-	public boolean filterFile(SmbFile file) {
-		return true;
-	}
-
 	public String getDirectory() {
 		return dir;
 	}
 
 	public long getInterval() {
 		return interval;
-	}
-
-	public String getUsername() {
-		return null;
-	}
-	
-	public String getPassword() {
-		return null;
-	}
-
-	public String getHost() {
-		return null;
 	}
 
 	public boolean notifyAdded(File target) throws IOException {
@@ -68,15 +51,7 @@ class DefaultLoader implements Listener {
 		return true;
 	}
 
-	public boolean notifyAdded(SmbFile target) throws IOException {
-		return true;
-	}
-
 	public boolean notifyDeleted(File target) throws IOException {
-		return true;
-	}
-
-	public boolean notifyDeleted(SmbFile target) throws IOException {
 		return true;
 	}
 
@@ -88,10 +63,6 @@ class DefaultLoader implements Listener {
 		} catch (Throwable t) {
 			logger.info("Loading groovy file caused an error", t);
 		}
-		return true;
-	}
-
-	public boolean notifyModified(SmbFile target) throws IOException {
 		return true;
 	}
 }

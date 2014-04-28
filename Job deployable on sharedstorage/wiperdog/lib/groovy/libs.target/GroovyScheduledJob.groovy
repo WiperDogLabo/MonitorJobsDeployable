@@ -29,7 +29,7 @@ class GroovyScheduledJob implements JobExecutable {
 	def paramsInstances = null
 	def rootJobName = null
 	def instanceName = null
-	def jobContent
+	
 	DefaultSender sender
 	List<Sender> senderList = new ArrayList<Sender>()
 	
@@ -38,18 +38,18 @@ class GroovyScheduledJob implements JobExecutable {
 	/**
 	 * constructor
 	 */
-	GroovyScheduledJob(fileName, jobContent, classOfJob, DefaultSender sender) {
+	GroovyScheduledJob(fullPathOfFile, classOfJob, DefaultSender sender) {
 		this.classOfJob = classOfJob
-		this.jobContent = jobContent;
-		this.fileName = fileName
+		this.fullPathOfFile = fullPathOfFile
+		this.fileName = new	File(this.fullPathOfFile).getName()
 		properties = MonitorJobConfigLoader.getProperties()
 		this.sender = sender
 	}
-
-	GroovyScheduledJob(fileName,jobContent, classOfJob, paramsInstances, rootJobName, instanceName, DefaultSender sender) {
+	
+	GroovyScheduledJob(fullPathOfFile, classOfJob, paramsInstances, rootJobName, instanceName, DefaultSender sender) {
 		this.classOfJob = classOfJob		
-		this.jobContent = jobContent;
-		this.fileName = fileName
+		this.fullPathOfFile = fullPathOfFile
+		this.fileName = new	File(this.fullPathOfFile).getName()	
 		this.paramsInstances = paramsInstances
 		this.rootJobName = rootJobName
 		this.instanceName = instanceName
@@ -61,7 +61,7 @@ class GroovyScheduledJob implements JobExecutable {
 		def shell = new GroovyShell()
 		def binding
 		def jobName		
-		def jobFileName = this.fileName.replaceFirst(~/\.[^\.]+$/, '')
+		def jobFileName = (new File(this.fullPathOfFile)).getName().replaceFirst(~/\.[^\.]+$/, '')
 		def params = []
 		
 		//Get instance job name
@@ -75,7 +75,7 @@ class GroovyScheduledJob implements JobExecutable {
 			//def jobFileFirstLine
 			def JOBvariable = null
 			//read into file to get job name
-			jobContent.eachLine { 
+			new File(this.fullPathOfFile).eachLine { 
 				if(it.trim().contains("JOB=") || it.trim().contains("JOB =")) {
 					JOBvariable = it	
 					return ;
@@ -125,7 +125,7 @@ class GroovyScheduledJob implements JobExecutable {
 		}
 		
 		if (vJob ==[:]) {
-		def jobFileName = this.fileName.replaceFirst(~/\.[^\.]+$/, '')
+		def jobFileName = (new File(this.fullPathOfFile)).getName().replaceFirst(~/\.[^\.]+$/, '')
 			def oJob = getJobInstance()
 			def binding = oJob.getBinding()
 			if (binding.hasVariable(ResourceConstants.DEF_JOB)) {
@@ -403,3 +403,4 @@ class GroovyScheduledJob implements JobExecutable {
 		return params;
 	}
 }
+
