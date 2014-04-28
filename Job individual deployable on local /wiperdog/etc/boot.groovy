@@ -59,6 +59,7 @@ def doBootStep() {
 		def trgListener = rootloader.loadClass("TriggerListener").newInstance([ctx] as Object[] )
 		def instListener = rootloader.loadClass("JobInstanceListener").newInstance([ctx] as Object[] )
 		def listJobListener = rootloader.loadClass("ListJobListener").newInstance([ctx] as Object[] )
+		def jobClassListener = rootloader.loadClass("JobClassListener").newInstance([ctx] as Object[] )
 		
         // OSGi serviceに渡すproperty
         def props_jobsvc = new java.util.Hashtable(props);
@@ -68,6 +69,7 @@ def doBootStep() {
 		 ctx.registerService(clsListener.getName(), trgListener, null)
 		 ctx.registerService(clsListener.getName(), instListener, null)
 		 ctx.registerService(clsListener.getName(), listJobListener, null)
+		 ctx.registerService(clsListener.getName(), jobClassListener, null)		 
 }
 
 /**
