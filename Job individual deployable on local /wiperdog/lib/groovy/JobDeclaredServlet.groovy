@@ -369,9 +369,9 @@ public class JobDeclared extends HttpServlet {
 				instanceStr = "[\n" + instanceStr + "\n]"
 				instanceStr= regularExpressionValidate(instanceStr)
 
-				writeToFile(JOB_DIR + "/${jobData.jobName}.instances", instanceStr)
+				writeToFile(INST_DIR + "/${jobData.jobName}.instances", instanceStr)
 			}else{
-				File instFile = new File(JOB_DIR + "/${jobData.jobName}.instances")
+				File instFile = new File(INST_DIR + "/${jobData.jobName}.instances")
 				if(instFile.exists()){
 					return instFile.delete()
 				}
