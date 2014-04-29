@@ -128,8 +128,8 @@ public class JobDeclared extends HttpServlet {
 				def stringOfJob = getJobScript(jobFile)
 				def realJobName = stringOfJob.JOB
 				def filePath = JOB_DIR + realJobName
-				def instanceFile = new File(INST_DIR+ ".instances")
-				def paramFile = new File(HOMEPATH, filePath + ".params")
+				def instanceFile = new File(filePath + ".instances")
+				def paramFile = new File(filePath + ".params")
 				// Get instance file's script in Object type(Map)
 				def instanceResult = getJobInstanceScript(instanceFile)
 				// Get param file's script in Object type(Map)
