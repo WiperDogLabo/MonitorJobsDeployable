@@ -98,6 +98,7 @@ public class JobDeclared extends HttpServlet {
 			builder = new JsonBuilder(message)
 			out.print(builder.toString())
 		}
+
 	}
 
 	@Override
@@ -118,7 +119,7 @@ public class JobDeclared extends HttpServlet {
 	      	// command = Read -> Read job's file
 	      	if(object.COMMAND == "Read"){
 				def jobFileName = object.job
-				def jobPath = JOB_DIR + jobFileName
+				def jobPath = JOB_DIR + "/" + jobFileName
 				def jobFile = new File(jobPath + ".job")
 
 				// resultRet returning result [Job:~~, instances:~~, params:~~]
@@ -158,7 +159,6 @@ public class JobDeclared extends HttpServlet {
 				out.print(builder.toString())
 			}
 		}catch (Exception ex) {
-			println ex
 			errorMsg = "Error when post data: " + ex
 			errorMsg+= org.apache.commons.lang.exception.ExceptionUtils.getFullStackTrace(ex)
 			message = [status:"failed", message:errorMsg]
@@ -176,12 +176,12 @@ public class JobDeclared extends HttpServlet {
 			if(jobData.jobFileName != null){
 				String s = jobData.jobFileName
 				if (jobData.jobFileName ==~ ".*\\.job") {
-					fileName = JOB_DIR + "${jobData.jobFileName}"
+					fileName = JOB_DIR + "/${jobData.jobFileName}"
 				} else {
-					fileName = JOB_DIR + "${jobData.jobFileName}.job"
+					fileName = JOB_DIR + "/${jobData.jobFileName}.job"
 				}
 			}else{
-				fileName = JOB_DIR + "${jobData.jobName}.job"
+				fileName = JOB_DIR + "/${jobData.jobName}.job"
 			}
 
 			// Process Comment
@@ -369,9 +369,9 @@ public class JobDeclared extends HttpServlet {
 				instanceStr = "[\n" + instanceStr + "\n]"
 				instanceStr= regularExpressionValidate(instanceStr)
 
-				writeToFile(JOB_DIR + "${jobData.jobName}.instances", instanceStr)
+				writeToFile(JOB_DIR + "/${jobData.jobName}.instances", instanceStr)
 			}else{
-				File instFile = new File(JOB_DIR + "${jobData.jobName}.instances")
+				File instFile = new File(JOB_DIR + "/${jobData.jobName}.instances")
 				if(instFile.exists()){
 					return instFile.delete()
 				}
@@ -397,9 +397,9 @@ public class JobDeclared extends HttpServlet {
 				}
 				paramStr = "[" + paramStr + "]"
 				paramStr = regularExpressionValidate(paramStr)
-				writeToFile(JOB_DIR + "${jobData.jobName}.params", paramStr)
+				writeToFile(JOB_DIR + "$/{jobData.jobName}.params", paramStr)
 			}else{
-				File paramFile = new File(JOB_DIR + "${jobData.jobName}.params")
+				File paramFile = new File(JOB_DIR + "$/{jobData.jobName}.params")
 				if(paramFile.exists()){
 					return paramFile.delete()
 				}
