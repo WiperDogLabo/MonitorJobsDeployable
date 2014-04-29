@@ -134,7 +134,7 @@ class ServletPolicy extends HttpServlet{
 	
 	def readFromFileSubtyped(filename){	
 		println "Begin load from file $filename with subtyped" 
-		def filePath = POLICY_DIR + filename
+		def filePath = POLICY_DIR +"/"+ filename
 		File policyFile = new File(filePath + ".policy")
 		if(policyFile.isFile()) {
 			String policyStr = policyFile.getText()
@@ -181,7 +181,7 @@ class ServletPolicy extends HttpServlet{
 
 	// WRITE DATA TO POLICY FILE
 	def write2File(filename, data){
-		def filePath = POLICY_DIR + filename
+		def filePath = POLICY_DIR +"/" + filename
 		File policyFile = new File(filePath + ".policy")
 		if(data != "") {
 			try {
